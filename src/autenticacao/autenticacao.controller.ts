@@ -12,7 +12,7 @@ export class AutenticacaoController {
   }
 
   @Post('entrar')
-  entrar() {
-    return this.autenticacaoService.entrar();
+  entrar(@Body() dto: AutenticacaoDTO) {
+    return this.autenticacaoService.entrar(dto);
   }
 }
