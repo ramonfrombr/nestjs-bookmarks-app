@@ -1,12 +1,13 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Usuario } from '@prisma/client';
+import { SelecionarUsuario } from 'src/autenticacao/decorator';
 import { JwtGuard } from 'src/autenticacao/guard';
 
+@UseGuards(JwtGuard)
 @Controller('usuarios')
 export class UsuarioController {
-  @UseGuards(JwtGuard)
   @Get('eu')
-  selecionarMeuPerfil(@Req() req: Request) {
-    return req.user;
+  selecionarMeuPerfil(@SelecionarUsuario() usuario: Usuario) {
+    return usuario;
   }
 }
