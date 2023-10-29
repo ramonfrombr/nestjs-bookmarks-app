@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Usuario, Favorito } from '@prisma/client';
 
 @Injectable({})
 export class AutenticacaoService {
