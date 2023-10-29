@@ -15,11 +15,14 @@ model Usuario {
   dataCriado DateTime @default(now())
   dataAtualizado DateTime @updatedAt
 
-  email String
+  email String @unique
   senhaHash String
 
   nome String?
   sobrenome String?
+
+  favoritos Favorito[]
+  @@map("usuarios")
 }
 
 model Favorito {
@@ -30,4 +33,9 @@ model Favorito {
   titulo String
   descricao String?
   link String
+
+  usuarioId Int
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+
+  @@map("favoritos")
 }
